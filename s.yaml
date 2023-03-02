@@ -40,7 +40,7 @@ services:
       function:
         name: "hapi"
         description: 'Serverless Devs Web Framework Function'
-        runtime: python3.10
+        runtime: python3.9
         codeUri: ./code
         handler: index.handler
         memorySize: 256
