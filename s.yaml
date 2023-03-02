@@ -28,15 +28,32 @@ vars: # 全局变量
     description: 'Serverless Devs Web Framework Service'
 
 services:
-  framework:
+  framework2:
     component: fc
     actions:
       pre-deploy:
         - run: s clean --component devsapp/fc-build@dev
         - component: fc build --use-docker # 要运行的命令行
+    props:
+      region: ${vars.region}
+      service: ${vars.service}
+      function:
+        name: "hapi"
+        description: 'Serverless Devs Web Framework Function'
+        runtime: python3.10
+        codeUri: ./code
+        handler: index.handler
+        memorySize: 256
+        timeout: 6
+  framework:
+    component: fc
+    actions:
+      pre-deploy:
+        # - run: s clean --component devsapp/fc-build@dev
+        - component: fc build --use-docker # 要运行的命令行
         # - run: npm install --production
         #   path: ./code
-        - run: node -v && env
+        # - run: node -v && env
     props:
       region: ${vars.region}
       service: ${vars.service}
