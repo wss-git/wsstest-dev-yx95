@@ -32,6 +32,7 @@ services:
     component: fc
     actions:
       pre-deploy:
+        - run: s clean --component devsapp/fc-build@dev
         - component: fc build --use-docker # 要运行的命令行
         # - run: npm install --production
         #   path: ./code
